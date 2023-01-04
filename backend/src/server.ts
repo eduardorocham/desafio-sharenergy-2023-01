@@ -3,7 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { mongoConnect } from './database/mongo';
-// import apiRoutes from './routes/api';
+import apiRoutes from './routes/api';
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ server.use(express.urlencoded({ extended: true }));
 
 server.get('/ping', (req: Request, res: Response) => res.json({ pong: true }));
 
-// server.use(apiRoutes);
+server.use(apiRoutes);
 
 server.use((req: Request, res: Response) => {
     res.status(404);
