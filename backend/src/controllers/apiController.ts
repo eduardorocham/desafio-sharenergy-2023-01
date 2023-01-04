@@ -1,7 +1,9 @@
-import { exec } from 'child_process';
 import { Request, Response } from 'express';
-import { json } from 'stream/consumers';
+import JWT from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { User } from '../models/User';
+
+dotenv.config();
 
 export const ping = (req: Request, res: Response) => {
     res.json({pong: true});
@@ -26,15 +28,21 @@ export const ping = (req: Request, res: Response) => {
 // }
 
 export const login = async (req: Request, res: Response) => {
-    const { username, password } = JSON.parse(req.body);
-    if(username && password) {
+    if(req.body.username && req.body.password) {
+        let username: string = req.body.username;
+        let password: string = req.body.password;
         
         let user = await User.findOne({
             username
         });
 
         if(user) {
-            res.json({ status: true });
+            const token = JWT.sign(
+                { username, password }, 
+                process.env.JWT_SECRET_KEY as string
+            );
+
+            res.json({ status: true, token });
             return;
         }
     }
