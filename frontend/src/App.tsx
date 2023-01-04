@@ -1,9 +1,10 @@
 import React from 'react';
+import { MainRoutes } from './routes/routes';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <MainRoutes />
     </div>
   );
 }

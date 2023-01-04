@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import { Request, Response } from 'express';
+import { json } from 'stream/consumers';
 import { User } from '../models/User';
 
 export const ping = (req: Request, res: Response) => {
@@ -25,9 +26,8 @@ export const ping = (req: Request, res: Response) => {
 // }
 
 export const login = async (req: Request, res: Response) => {
-    if(req.body.username && req.body.password) {
-        let username: string = req.body.username;
-        let password: string = req.body.password;
+    const { username, password } = JSON.parse(req.body);
+    if(username && password) {
         
         let user = await User.findOne({
             username
