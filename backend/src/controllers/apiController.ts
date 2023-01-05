@@ -28,9 +28,8 @@ export const ping = (req: Request, res: Response) => {
 // }
 
 export const login = async (req: Request, res: Response) => {
-    if(req.body.username && req.body.password) {
-        let username: string = req.body.username;
-        let password: string = req.body.password;
+    const { username, password } = req.body;
+    if(username && password) {
         
         let user = await User.findOne({
             username

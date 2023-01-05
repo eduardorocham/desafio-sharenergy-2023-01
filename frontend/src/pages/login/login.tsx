@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../useApi';
 
@@ -8,10 +9,15 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (event : any) => {
         event.preventDefault();
         setLoading(true);
         const response = await api.login(username, password);
+        if (response.status === true) {
+            navigate('/home');
+        }
         setLoading(false);
     }
 

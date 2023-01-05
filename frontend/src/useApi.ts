@@ -14,7 +14,16 @@ export const api = {
                 }
             });
             const json = await response.json();
-            console.log(json);
+
+            if (json) {
+                localStorage.setItem("token", json.token);
+            }
+
+            return json;
         }
+    },
+    usuarioAutenticado: () => {
+        return localStorage.getItem("token") != undefined ? true : false
+        // return typeof localStorage.getItem("token")
     }
 }

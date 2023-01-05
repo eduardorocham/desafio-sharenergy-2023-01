@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { mongoConnect } from './database/mongo';
 import apiRoutes from './routes/api';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ server.use(cors());
 server.use(express.static(path.join(__dirname, '../public')));
 server.use(express.urlencoded({ extended: true }));
 
-server.get('/ping', (req: Request, res: Response) => res.json({ pong: true }));
+server.use(bodyParser.json());
 
 server.use(apiRoutes);
 
