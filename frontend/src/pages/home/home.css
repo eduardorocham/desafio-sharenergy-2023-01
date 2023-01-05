@@ -1,0 +1,23 @@
+.users-area {
+    border-top: 0.1rem solid #000;
+    border-left: 0.1rem solid #000;
+    border-right: 0.1rem solid #000;
+    margin-top: 2rem;
+}
+
+.users-area-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #999;
+    border-bottom: 0.1rem solid #000;
+}
+
+.users-area-header div {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem 0;
+    text-transform: uppercase;
+    color: #FFF;
+}
