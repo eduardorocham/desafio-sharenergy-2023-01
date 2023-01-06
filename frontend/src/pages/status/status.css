@@ -1,0 +1,35 @@
+.status-area {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.status-area h1 {
+   margin-top: 4rem;
+}
+
+.status-area form {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.status-area input[type='number'] {
+    width: 30%;
+    outline: 0;
+    padding: 1rem;
+}
+
+.status-area input[type='submit'] {
+    padding: 1rem;
+    cursor: pointer;
+    border: 0;
+    background-color: #999;
+    color: #FFF;
+    font-weight: 700;
+}
+
+.status-area input[type='submit']:hover {
+    background-color: #666;
+}

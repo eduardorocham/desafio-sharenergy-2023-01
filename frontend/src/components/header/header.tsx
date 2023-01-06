@@ -20,7 +20,7 @@ const Header = () => {
                         <ul>
                             <Link to='/home'>Home</Link>
                             <Link to='/status-code'>Status Code</Link>
-                            <Link to='/imagens'>Imagens</Link>
+                            <Link to='/random-dog'>Random Dog</Link>
                             <Link to='/clientes'>Clientes</Link>
                         </ul>
                     </nav>

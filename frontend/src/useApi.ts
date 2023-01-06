@@ -30,5 +30,15 @@ export const api = {
         const result = await fetch('https://randomuser.me/api/?results=100&inc=picture,name,email,login,dob');
         const json = await result.json();
         return json;
+    },
+    statusCode: async (status : string) => {
+        const result = await fetch(`https://http.cat/[${status}]`);
+        const json = await result.json();
+        return json;
+    },
+    randomDog: async () => {
+        const result = await fetch('https://random.dog/woof.json?include=jpg');
+        const json = await result.json();
+        return json;
     }
 }
