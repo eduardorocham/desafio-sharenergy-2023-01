@@ -2,12 +2,9 @@ import { Request, Response } from 'express';
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { User } from '../models/User';
+import { Client } from '../models/Client';
 
 dotenv.config();
-
-export const ping = (req: Request, res: Response) => {
-    res.json({pong: true});
-}
 
 // export const register = async (req: Request, res: Response) => {
 //     if(req.body.email && req.body.password) {
@@ -50,13 +47,71 @@ export const login = async (req: Request, res: Response) => {
     res.json({ status: false });
 }
 
-// export const list = async (req: Request, res: Response) => {
-//     let users = await User.findAll();
-//     let list: string[] = [];
+export const listClients = async (req: Request, res: Response) => {
+    let clients = await Client.find({});
+    res.json({ clients });
+}
 
-//     for(let i in users) {
-//         list.push( users[i].email );
-//     }
+export const getClient = async (req: Request, res: Response) => {
+    let { id } = req.params;
 
-//     res.json({ list });
-// }
+    try {
+        let client = await Client.findById(id);
+        if (client) {
+            res.json({ client }); 
+        }
+    } catch {
+        res.json({ error: 'Cliente não encontrado' })
+    }
+}
+
+export const createClient = async (req: Request, res: Response) => {
+    const { nome, sobrenome, email, telefone, endereco, cpf } = req.body;
+    if(req.body) {
+        let newClient = await Client.create({
+            nomeCompleto: {
+                nome,
+                sobrenome
+            },
+            email,
+            telefone,
+            endereco,
+            cpf
+        });
+
+        res.json({ id: newClient.id });
+    }
+}
+
+export const updateClient = async (req: Request, res: Response) => {
+    const { nome, sobrenome, email, telefone, endereco, cpf } = req.body;
+    const { id } = req.params;
+
+    if (id) {
+        await Client.updateOne(
+            { id },
+            {
+                nomeCompleto: {
+                    nome,
+                    sobrenome
+                },
+                email,
+                telefone,
+                endereco,
+                cpf
+            }
+        );
+
+        res.json({status: 'updated'});
+    }
+}
+
+export const deleteClient = async (req: Request, res: Response) => {
+    let { id } = req.params;
+
+    if(id) {
+        await Client.findOneAndDelete({ id });
+
+        res.json({status: 'deleted'});
+    }
+}

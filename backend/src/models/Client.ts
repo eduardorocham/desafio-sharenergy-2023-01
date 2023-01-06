@@ -1,7 +1,10 @@
 import { Schema, model } from 'mongoose';
 
 type ClientType = {
-    nome: string,
+    nomeCompleto: {
+        nome: string,
+        sobrenome: string
+    },
     email: string,
     telefone: string,
     endereco: string,
@@ -9,7 +12,10 @@ type ClientType = {
 }
 
 const schema = new Schema<ClientType>({
-    nome: {type: String, required: true},
+    nomeCompleto: {
+        nome: {type: String, required: true },
+        sobrenome: {type: String, required: true}
+    },
     email: {type: String, required: true},
     telefone: {type: String, required: true},
     endereco: {type: String, required: true},
@@ -18,4 +24,4 @@ const schema = new Schema<ClientType>({
 
 const modelName : string = 'Clients';
 
-export const User = model<ClientType>(modelName, schema);
+export const Client = model<ClientType>(modelName, schema);
