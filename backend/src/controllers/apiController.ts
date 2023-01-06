@@ -32,7 +32,8 @@ export const login = async (req: Request, res: Response) => {
     if(username && password) {
         
         let user = await User.findOne({
-            username
+            username,
+            password
         });
 
         if(user) {
