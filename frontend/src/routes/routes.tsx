@@ -6,6 +6,7 @@ import Login from "../pages/login/login";
 import Home from "../pages/home/home";
 import Status from "../pages/status/status";
 import RandomDog from "../pages/dog/dog";
+import Clientes from "../pages/clientes/clientes";
 
 export const MainRoutes = () => {
     return (
@@ -28,6 +29,12 @@ export const MainRoutes = () => {
                     <ProtectedRoutes>
                         <Header />
                         <RandomDog />
+                    </ProtectedRoutes>
+                } />
+                <Route path="/clientes" element={
+                    <ProtectedRoutes>
+                        <Header />
+                        <Clientes />
                     </ProtectedRoutes>
                 } />
             </Routes>

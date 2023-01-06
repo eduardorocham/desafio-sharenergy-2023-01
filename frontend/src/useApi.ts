@@ -32,7 +32,12 @@ export const api = {
         return json;
     },
     statusCode: async (status : string) => {
-        const result = await fetch(`https://http.cat/[${status}]`);
+        const result = await fetch(`https://http.cat/${status}`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'mode': 'cors'
+            }
+        });
         const json = await result.json();
         return json;
     },

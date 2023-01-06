@@ -96,7 +96,7 @@ const Home = () => {
                 <div className='pagination'>
                     <button className='button-pagination' onClick={prevPage}>Prev</button>
                     {Array.from(Array(pages), (item, index) => {
-                        return <button 
+                        return <button
                             className={index == currentPage ? 'button-pagination-active' : 'button-pagination'} 
                             value={index} 
                             onClick={changePage}>
