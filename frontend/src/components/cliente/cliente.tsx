@@ -1,4 +1,5 @@
 import './cliente.css';
+import { Link } from 'react-router-dom';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EditIcon from '@mui/icons-material/Edit';
@@ -6,8 +7,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Cliente as ClienteType } from '../../types/cliente';
 
+import { api } from '../../utils/useApi';
+
 type Props = {
     data: ClienteType
+}
+
+const delCliente = async (id : string) => {
+    const result = await api.deleteClient(id);
+    if (result) {
+        alert('Usuário deletado');
+    }
 }
 
 const Cliente = ({data} : Props) => {
@@ -21,7 +31,7 @@ const Cliente = ({data} : Props) => {
                 <div className='cliente-icon'>
                     <EditIcon />
                 </div>
-                <div className='cliente-icon'>
+                <div className='cliente-icon' onClick={() => delCliente(data._id)}>
                     <DeleteIcon />
                 </div>
                 </div>

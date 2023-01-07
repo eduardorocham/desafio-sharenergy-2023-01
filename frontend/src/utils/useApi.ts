@@ -49,7 +49,41 @@ export const api = {
     getClients: async () => {
         const result = await fetch('http://localhost:4000/list');
         const json = await result.json();
-        console.log(json.clients);
+        console.log(json);
+        return json;
+    },
+    createClient: async (nome: string, sobrenome: string, email: string, telefone: string, endereco: string, cpf: string) => {
+        if (nome && sobrenome && email && telefone && endereco && cpf) {
+            const response = await fetch(`${BASE}/list`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    nome,
+                    sobrenome,
+                    email,
+                    telefone,
+                    endereco,
+                    cpf
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await response.json();
+
+            return json;
+        }
+    },
+    deleteClient: async (id : string) => {
+        const result = await fetch(`http://localhost:4000/list`, {
+            method: 'DELETE',
+                body: JSON.stringify({
+                    id
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+        });
+        const json = await result.json();
         return json;
     }
 }

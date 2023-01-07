@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import './clientes.css';
 
 import { Cliente as ClienteType } from '../../types/cliente';
 
-import { api } from '../../useApi';
+import { api } from '../../utils/useApi';
 
 import Container from '../../components/container/container';
 import Cliente  from '../../components/cliente/cliente';
@@ -29,6 +30,9 @@ const Clientes = () => {
             <Container>
                 <div className='clientes-area'>
                     <h1>Clientes cadastrados:</h1>
+                    <Link to='/clientes/cadastro'>
+                        <button>Adicionar cliente</button>
+                    </Link>
                 </div>
                 {loading === false &&
                     list.map((i, k) => (

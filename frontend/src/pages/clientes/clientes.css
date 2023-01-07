@@ -1,9 +1,20 @@
 .clientes-area {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    margin-top: 2rem;
 }
 
-.clientes-area h1 {
-    margin-top: 2rem;
+.clientes-area button {
+    padding: 1rem;
+    cursor: pointer;
+    background-color: #6767db;
+    border: 0;
+    border-radius: 1rem;
+    color: #FFF;
+    font-weight: 700;
+}
+
+.clientes-area button:hover {
+    background-color: #4d4da3;
 }

@@ -2,7 +2,7 @@ import './home.css';
 
 import { useState, useEffect } from 'react';
 
-import { api } from "../../useApi";
+import { api } from "../../utils/useApi";
 
 import { user } from '../../types/user';
 

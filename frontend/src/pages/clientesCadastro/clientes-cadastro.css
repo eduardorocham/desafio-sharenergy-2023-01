@@ -1,0 +1,54 @@
+.clientes-cadastro-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.clientes-cadastro-area form {
+    margin-top: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clientes-cadastro-area .nome, .endereco {
+    width: 100%;
+    display: grid;
+    border: 0;
+    gap: 1rem;
+}
+
+.clientes-cadastro-area .nome {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.clientes-cadastro-area .endereco {
+    grid-template-columns: 70% calc(30% - 1rem);
+}
+
+.clientes-cadastro-area input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#email, #telefone, #cpf {
+    display: block;
+    width: 100%;
+}
+
+.clientes-cadastro-area input[type='submit'] {
+    background-color: #48f96e;
+    width: 10rem;
+    display: block;
+    border: 0;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.clientes-cadastro-area input[type='submit']:hover {
+    background-color: #33b14e;
+}

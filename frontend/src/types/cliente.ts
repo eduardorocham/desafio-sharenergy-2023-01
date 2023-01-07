@@ -6,5 +6,7 @@ export type Cliente = {
     email: string,
     telefone: string,
     endereco: string,
-    cpf: string
+    cpf: string,
+    __v: number,
+    _id: string
 }

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Container from '../../components/container/container';
 
-import { api } from '../../useApi';
+import { api } from '../../utils/useApi';
 
 const RandomDog = () => {
     const [urlImage, setUrlImage] = useState<string>('');

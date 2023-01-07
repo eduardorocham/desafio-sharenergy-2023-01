@@ -5,7 +5,7 @@ import { STATUS_CODES } from 'http';
 
 import Container from '../../components/container/container';
 
-import { api } from '../../useApi';
+import { api } from '../../utils/useApi';
 
 const Status = () => {
     const [status, setStatus] = useState<string>('');
