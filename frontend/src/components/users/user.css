@@ -12,6 +12,34 @@
     padding: 1.2rem 0;
 }
 
+.data span {
+    display: none;
+}
+
 .data img {
     border-radius: 50%;
+}
+
+@media(max-width: 42.5rem) {
+    .user-area {
+        display: block;
+        padding: 2rem 0;
+    }
+
+    .data {
+        padding: 0.5rem 0;
+        font-size: 1.6rem;
+    }
+
+    .data span {
+        display: block;
+        white-space: nowrap;
+        margin-right: 0.5rem;
+        color: #666;
+        font-weight: 700;
+    }
+
+    .data img {
+        width: 8rem;
+    }
 }

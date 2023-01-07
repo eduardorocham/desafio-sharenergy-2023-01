@@ -1,0 +1,41 @@
+.cliente-area {
+    width: 100%;
+    margin: 2rem auto 0;
+}
+
+.cliente-data-show {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+.cliente-name, .cliente-icon {
+    background-color: #d3d1d1;
+    border-right: solid 0.1rem #FFF;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.cliente-datas {
+    display: flex;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 0.1rem solid #000;
+}
+
+.cliente-datas-left, .cliente-datas-right {
+    flex: 1;
+}
+
+.cliente-data {
+    margin-bottom: 0.5rem;
+}
+
+.cliente-data span {
+    font-weight: 700;
+    margin-right: 0.5rem;
+    color: #666;
+}

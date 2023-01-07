@@ -34,9 +34,9 @@ export const api = {
     statusCode: async (status : string) => {
         const result = await fetch(`https://http.cat/${status}`, {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'mode': 'cors'
-            }
+                'Access-Control-Allow-Origin': '*'
+            },
+            mode: 'no-cors'
         });
         const json = await result.json();
         return json;
@@ -44,6 +44,12 @@ export const api = {
     randomDog: async () => {
         const result = await fetch('https://random.dog/woof.json?include=jpg');
         const json = await result.json();
+        return json;
+    },
+    getClients: async () => {
+        const result = await fetch('http://localhost:4000/list');
+        const json = await result.json();
+        console.log(json.clients);
         return json;
     }
 }

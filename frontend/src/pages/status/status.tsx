@@ -1,6 +1,7 @@
 import './status.css';
 
 import { useState } from 'react';
+import { STATUS_CODES } from 'http';
 
 import Container from '../../components/container/container';
 
@@ -8,6 +9,7 @@ import { api } from '../../useApi';
 
 const Status = () => {
     const [status, setStatus] = useState<string>('');
+    const [imageUrl, setImageUrl] = useState<string>('');
 
     const handleStatusCode = (e : any) => {
         setStatus(e.target.value);
@@ -15,8 +17,10 @@ const Status = () => {
 
     const getImage = async (event : any) => {
         event.preventDefault();
-        const image = await api.statusCode(status);
-        console.log(image);
+        // if (STATUS_CODES[status]) {
+        //     setImageUrl(`https://http.cat/${status}`);
+        // }
+        // setImageUrl(`https://http.cat/${status}`);
     }
 
     return (
@@ -37,9 +41,11 @@ const Status = () => {
                             onClick={getImage}
                         />
                     </form>
-                    <div className='status-area-image'>
-                        <img src='' alt='' />
-                    </div>
+                    {imageUrl.length > 1 &&
+                        <div className='status-area-image'>
+                            <img src={imageUrl} alt='' />
+                        </div>
+                    }
                 </div>   
             </Container>
         </div>

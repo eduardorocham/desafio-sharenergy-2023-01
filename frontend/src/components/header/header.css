@@ -38,3 +38,9 @@ header a:hover {
 .logout:hover {
     background-color: #cbcaca;
 }
+
+@media(max-width: 42.5rem) {
+    nav {
+        display: none;
+    }
+}

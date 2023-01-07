@@ -70,7 +70,7 @@ const Home = () => {
     }, [])
     
     return (
-        <div>
+        <div className='home-area'>
             <Container>
                 <div className="input-looking">
                     <input 

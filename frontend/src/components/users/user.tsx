@@ -12,10 +12,22 @@ const User = ({data} : Props) => {
             <div className='data'>
                 <img src={data.picture.thumbnail} alt='' />
             </div>
-            <div className='data'>{data.name.title} {data.name.first} {data.name.last}</div>
-            <div className='data'>{data.email}</div>
-            <div className='data'>{data.login.username}</div>
-            <div className='data'>{data.dob.age}</div>
+            <div className='data'>
+                <span>Name:</span>
+                {data.name.title} {data.name.first} {data.name.last}
+            </div>
+            <div className='data'>
+                <span>E-mail:</span>
+                {data.email}
+            </div>
+            <div className='data'>
+                <span>Username:</span>
+                {data.login.username}
+            </div>
+            <div className='data'>
+                <span>Age:</span>
+                {data.dob.age}
+            </div>
         </div>
     )
 }
