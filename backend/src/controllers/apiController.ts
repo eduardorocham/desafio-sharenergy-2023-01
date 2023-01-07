@@ -67,7 +67,7 @@ export const getClient = async (req: Request, res: Response) => {
 
 export const createClient = async (req: Request, res: Response) => {
     const { nome, sobrenome, email, telefone, endereco, cpf } = req.body;
-    if(req.body) {
+    if(nome && sobrenome && email && telefone && endereco && cpf) {
         let newClient = await Client.create({
             nomeCompleto: {
                 nome,
@@ -80,6 +80,8 @@ export const createClient = async (req: Request, res: Response) => {
         });
 
         res.json({ id: newClient.id });
+    } else {
+        res.json({error: 'algo deu errado'})
     }
 }
 
