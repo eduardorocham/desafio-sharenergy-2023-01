@@ -107,7 +107,7 @@ export const updateClient = async (req: Request, res: Response) => {
 }
 
 export const deleteClient = async (req: Request, res: Response) => {
-    let { id } = req.params;
+    let { id } = req.body;
 
     if(id) {
         await Client.findOneAndDelete({ id });
