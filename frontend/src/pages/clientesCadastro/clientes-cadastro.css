@@ -52,3 +52,21 @@
 .clientes-cadastro-area input[type='submit']:hover {
     background-color: #33b14e;
 }
+
+@media(max-width: 42.5rem) {
+    .clientes-cadastro-page {
+        padding: 0 1.5rem;
+    }
+
+    .clientes-cadastro-area form {
+        width: 100%;
+    }
+
+    .clientes-cadastro-area .nome, .clientes-cadastro-area .endereco {
+        display: block;
+    }
+
+    .clientes-cadastro-area .nome input, .clientes-cadastro-area .endereco input {
+        width: 100%;
+    }
+}

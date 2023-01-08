@@ -13,7 +13,6 @@ const RandomDog = () => {
     const getDogImage = async () => {
         setLoading(true);
         const result = await api.randomDog();
-        console.log(result);
         setUrlImage(result.url);
         setLoading(false);
     }

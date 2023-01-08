@@ -36,16 +36,14 @@ const Home = () => {
     }
 
     const getFromFilter = () => {
+        const oldList = [...users];
         const newList = users.filter(i => 
-            i.name.first.toLowerCase().indexOf(filter.toLocaleLowerCase()) > -1 
-            // ||
-            // i.email.toLowerCase().indexOf(filter.toLocaleLowerCase()) > -1 ||
-            // i.login.username.toLowerCase().indexOf(filter.toLocaleLowerCase()) > -1
+            i.name.first.includes(filter) || i.name.last.includes(filter)
         );
-        if(filter.length > 1) {
+        if(filter.length > 0) {
             setUsers(newList);
         } else {
-            getUsers();
+            setUsers(oldList);
         }
     }
 
@@ -66,8 +64,10 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getUsers();
-    }, [])
+        if(!users || users?.length === 0) {
+            getUsers();
+        }  
+    }, [users]);
     
     return (
         <div className='home-area'>
@@ -99,7 +99,8 @@ const Home = () => {
                         return <button
                             className={index == currentPage ? 'button-pagination-active' : 'button-pagination'} 
                             value={index} 
-                            onClick={changePage}>
+                            onClick={changePage}
+                            key={index}>
                             {index + 1}
                         </button>
                     })}

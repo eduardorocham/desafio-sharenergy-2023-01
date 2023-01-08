@@ -8,6 +8,10 @@
     grid-template-columns: repeat(4, auto);
 }
 
+.cliente-data-show a {
+    color: #000;
+}
+
 .cliente-name, .cliente-icon {
     background-color: #d3d1d1;
     border-right: solid 0.1rem #FFF;
@@ -38,4 +42,10 @@
     font-weight: 700;
     margin-right: 0.5rem;
     color: #666;
+}
+
+@media(max-width: 42.5rem) {
+    .cliente-datas {
+        flex-direction: column;
+    }
 }

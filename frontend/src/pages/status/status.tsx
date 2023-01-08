@@ -1,15 +1,17 @@
 import './status.css';
 
+import status from 'http-status';
+
 import { useState } from 'react';
-import { STATUS_CODES } from 'http';
 
 import Container from '../../components/container/container';
 
 import { api } from '../../utils/useApi';
 
 const Status = () => {
-    const [status, setStatus] = useState<string>('');
+    const [statusCode, setStatus] = useState<string>('');
     const [imageUrl, setImageUrl] = useState<string>('');
+    const [loading, setLoading] = useState(false);
 
     const handleStatusCode = (e : any) => {
         setStatus(e.target.value);
@@ -17,8 +19,11 @@ const Status = () => {
 
     const getImage = async (event : any) => {
         event.preventDefault();
-        console.log(STATUS_CODES[status]);
-        setImageUrl(`https://http.cat/${status}`);
+        if (status[statusCode]) {
+            setImageUrl(`https://http.cat/${statusCode}`);
+        } else {
+        setImageUrl('https://media.istockphoto.com/id/924949200/pt/vetorial/404-error-page-or-file-not-found-icon.jpg?s=170667a&w=0&k=20&c=GSfOtikQbfZBllL7OrY3zb6cP1Icjr9HmeHDmh0BB5I=');
+        }
     }
 
     return (
@@ -39,7 +44,10 @@ const Status = () => {
                             onClick={getImage}
                         />
                     </form>
-                    {imageUrl.length > 1 &&
+                    {loading  &&
+                        <div>Carregando...</div>
+                    }
+                    {loading === false &&
                         <div className='status-area-image'>
                             <img src={imageUrl} alt='' />
                         </div>

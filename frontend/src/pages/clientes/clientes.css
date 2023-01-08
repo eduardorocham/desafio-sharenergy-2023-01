@@ -18,3 +18,17 @@
 .clientes-area button:hover {
     background-color: #4d4da3;
 }
+
+@media(max-width: 42.5rem) {
+    .clientes-page {
+        padding: 0 1.5rem;
+    }
+
+    .clientes-area {
+        flex-direction: column-reverse;
+    }
+
+    .clientes-area button {
+        margin-bottom: 1rem;
+    }
+}

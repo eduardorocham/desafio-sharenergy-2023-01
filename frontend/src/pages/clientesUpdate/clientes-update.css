@@ -8,7 +8,6 @@
 .buttons button {
     background-color: #dc0303;
     width: 10rem;
-    display: block;
     border: 0;
     color: #FFF;
     font-weight: 700;
@@ -18,4 +17,11 @@
 
 .buttons button:hover {
     background-color: #bf0303;
+}
+
+@media(max-width: 42.5rem) {
+    .buttons {
+        width: 65%;
+        margin-top: 1rem;
+    }
 }

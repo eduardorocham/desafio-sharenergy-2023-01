@@ -34,3 +34,9 @@
     max-width: 50rem;
 }
 
+@media(max-width: 42.5rem) {
+    .random-dog-image img {
+        max-width: 30rem;
+    }
+}
+
