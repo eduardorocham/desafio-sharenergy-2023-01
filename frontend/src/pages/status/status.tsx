@@ -17,10 +17,8 @@ const Status = () => {
 
     const getImage = async (event : any) => {
         event.preventDefault();
-        // if (STATUS_CODES[status]) {
-        //     setImageUrl(`https://http.cat/${status}`);
-        // }
-        // setImageUrl(`https://http.cat/${status}`);
+        console.log(STATUS_CODES[status]);
+        setImageUrl(`https://http.cat/${status}`);
     }
 
     return (

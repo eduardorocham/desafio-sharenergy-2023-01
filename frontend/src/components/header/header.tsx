@@ -41,7 +41,7 @@ const Header = () => {
                         <NavLink onClick={showMenu} to='/clientes'>Clientes</NavLink>
                     </NavMenu>
 
-                    <ButtonLogOut>
+                    <ButtonLogOut onClick={logout}>
                         Sair
                     </ButtonLogOut>
                 </HeaderContent>
