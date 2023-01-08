@@ -1,0 +1,21 @@
+.buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+}
+
+.buttons button {
+    background-color: #dc0303;
+    width: 10rem;
+    display: block;
+    border: 0;
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.buttons button:hover {
+    background-color: #bf0303;
+}

@@ -1,10 +1,20 @@
-import './header.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Container from '../container/container';
+import {
+    HeaderArea,
+    HeaderContent,
+    MenuMobile,
+    NavMenu,
+    NavLink,
+    ButtonLogOut
+} from './styles';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
+    const [show, setShow] = useState(false);
+
     const navigate = useNavigate();
 
     const logout = () => {
@@ -12,24 +22,31 @@ const Header = () => {
         navigate('/');
     }
 
+    const showMenu = () => {
+        setShow(!show);
+    }
+
     return (
-        <header>
+        <HeaderArea>
             <Container>
-                <div className='header-content'>
-                    <nav>
-                        <ul>
-                            <Link to='/home'>Home</Link>
-                            <Link to='/status-code'>Status Code</Link>
-                            <Link to='/random-dog'>Random Dog</Link>
-                            <Link to='/clientes'>Clientes</Link>
-                        </ul>
-                    </nav>
-                    <button className='logout' onClick={logout}>
+                <HeaderContent>
+                    <MenuMobile onClick={showMenu}>
+                        <MenuIcon style={{color: '#FFF', width: 30, height: 30}}/>
+                    </MenuMobile>
+
+                    <NavMenu show={show}>
+                        <NavLink onClick={showMenu} to='/home'>Home</NavLink>
+                        <NavLink onClick={showMenu} to='/status-code'>Status Code</NavLink>
+                        <NavLink onClick={showMenu} to='/random-dog'>Random Dog</NavLink>
+                        <NavLink onClick={showMenu} to='/clientes'>Clientes</NavLink>
+                    </NavMenu>
+
+                    <ButtonLogOut>
                         Sair
-                    </button>
-                </div>
+                    </ButtonLogOut>
+                </HeaderContent>
             </Container>
-        </header>
+        </HeaderArea>
     )
 }
 

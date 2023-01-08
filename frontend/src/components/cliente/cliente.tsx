@@ -28,9 +28,9 @@ const Cliente = ({data} : Props) => {
                     <AccountCircleIcon />
                 </div>
                 <div className="cliente-name">{data.nomeCompleto.nome} {data.nomeCompleto.sobrenome}</div>
-                <div className='cliente-icon'>
+                <Link to={`/cliente/${data._id}`} className='cliente-icon'>
                     <EditIcon />
-                </div>
+                </Link>
                 <div className='cliente-icon' onClick={() => delCliente(data._id)}>
                     <DeleteIcon />
                 </div>
