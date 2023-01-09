@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import { api } from '../../utils/useApi';
 
@@ -9,20 +10,35 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [warning, setWarning] = useState(false);
+    const [cookies, setCookie, getCokie] = useCookies(['user']);
 
     const navigate = useNavigate();
+
+    const checkCookie = () => {
+        if (cookies.user) {
+            setUserName(cookies.user.username);
+            setPassword(cookies.user.password);
+        }
+    }
 
     const handleSubmit = async (event : any) => {
         event.preventDefault();
         setLoading(true);
         const response = await api.login(username, password);
         if (response.status === true) {
+            if (getCokie('user') === undefined) {
+                setCookie('user', {username, password}, { path: '/' });
+            };
             navigate('/home');
         } else {
             setWarning(true);
         }
         setLoading(false);
     }
+
+    useEffect(() => {
+        checkCookie();
+    }, []);
 
     return (
         <div className='login-area'>
@@ -39,6 +55,7 @@ const Login = () => {
                         placeholder='Usuário'
                         required
                         onChange={(e) => setUserName(e.target.value)}
+                        value={username}
                     />
                     <input 
                         type='password'
@@ -47,6 +64,7 @@ const Login = () => {
                         placeholder='Senha'
                         required
                         onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                     />
                     <input 
                         type='submit'

@@ -24,7 +24,6 @@ export const api = {
     },
     usuarioAutenticado: () => {
         return localStorage.getItem("token") != undefined ? true : false
-        // return typeof localStorage.getItem("token")
     },
     randomUser: async () => {
         const result = await fetch('https://randomuser.me/api/?results=100&inc=picture,name,email,login,dob');
