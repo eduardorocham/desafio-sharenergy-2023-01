@@ -112,7 +112,7 @@ export const deleteClient = async (req: Request, res: Response) => {
     let { id } = req.body;
 
     if(id) {
-        await Client.findOneAndDelete({ id });
+        await Client.findOneAndDelete({ _id: id });
 
         res.json({status: 'deleted'});
     }
