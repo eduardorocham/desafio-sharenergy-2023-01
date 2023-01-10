@@ -9,11 +9,11 @@ Aplicação backend e frontend com login, CRUD de clientes e integração de api
 
 3 - Em `users` você deve criar um documento que contenha `username` que recebe o valor `desafiosharenergy`  e `password` que recebe o valor `sh@r3n3rgy`.
 
-4 - Em `clients` você deve criar um documento que contenha um objeto `nomeCompleto` que recebe `nome` e `sobrenome`, `email`, `telefone`, `endereco` e `cpf`, todos nessa ordem, os valores ficam a seu critério.
+4 - Em `clients` você deve criar um documento que contenha um objeto `nomeCompleto` que recebe `nome` e `sobrenome`; `email`; `telefone`; `endereco` e `cpf`, todos nessa ordem, os valores ficam a seu critério.
 
 ## Instalação
 
-Após ter criado o banco de dados e configurando as collections, você deverá acessar as páginas backend e frontend em seu terminal, e em cada uma delas dar o comando `npm install`, em seguida o projeto estará pronto para ser rodado.
+Após ter criado o banco de dados e configurando as collections, você deverá acessar as páginas backend e frontend em seu terminal, e em cada uma delas dar o comando `npm install`, em seguida a aplicação estará pronto para ser rodado.
 
 ### Variáveis de ambiente
 
