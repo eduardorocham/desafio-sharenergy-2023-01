@@ -3,7 +3,7 @@ Aplicação backend e frontend com login, CRUD de clientes e integração de api
 
 ## Banco de dados
 
-1 - Para rodar este projeto, você deve ter instalado em sua computador o MongoDB versão 6.0.3, você pode baixar o servidor comunitário em [https://www.mongodb.com/try/download/community], caso deseje, também pode baixar o Compass para administrar os bancos em [https://www.mongodb.com/try/download/compass].
+1 - Para rodar este projeto, você deve ter instalado em sua computador o MongoDB versão 6.0.3, você pode baixar o servidor comunitário em https://www.mongodb.com/try/download/community, caso deseje, também pode baixar o Compass para administrar os bancos em https://www.mongodb.com/try/download/compass.
 
 2 - Após instalado, você deve criar um banco de dados com o nome que desejar e dentro dele deve criar duas collections, uma denominada `users` e outra `clients`.
 
@@ -21,10 +21,10 @@ Em `.env-example`, você encontrará três variáveis de ambiente, em `PORT` voc
 
 ## Rodando a aplicação
 
-1 - Primeiro você deverá acessar a pasta backend através do seu terminal e dar o comando `npm run start-dev` para rodar em seu servidor.
+1 - Primeiro você deverá acessar a pasta backend através do seu terminal e dar o comando `npm run start-dev` para rodar o seu servidor.
 
 2 - Em seguida, acesse a pasta do front-end e der o comando `npm start`.
 
 ## Link do vídeo de apresentação
 
-Você poderá assistir um vídeo de apresentação da aplicação em [https://www.youtube.com/watch?v=eUosiCCTRyg&t=69s].
+Você poderá assistir um vídeo de apresentação da aplicação em https://www.youtube.com/watch?v=eUosiCCTRyg&t=69s.
