@@ -6,24 +6,6 @@ import { Client } from '../models/Client';
 
 dotenv.config();
 
-// export const register = async (req: Request, res: Response) => {
-//     if(req.body.email && req.body.password) {
-//         let { email, password } = req.body;
-
-//         let hasUser = await User.findOne({where: { email }});
-//         if(!hasUser) {
-//             let newUser = await User.create({ email, password });
-
-//             res.status(201);
-//             res.json({ id: newUser.id });
-//         } else {
-//             res.json({ error: 'E-mail já existe.' });
-//         }
-//     }
-
-//     res.json({ error: 'E-mail e/ou senha não enviados.' });
-// }
-
 export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     if(username && password) {
