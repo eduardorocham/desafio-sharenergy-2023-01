@@ -13,10 +13,9 @@ const Home = () => {
     const [users, setUsers] = useState<user[]>([]);
     const [newListUsers, setNewListUsers] = useState<user[]>([]);
     const [filter, setFilter] = useState<string>('');
-    const [loading, setLoading] = useState(false);
 
     //Paginação:
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
 
     const pages = Math.ceil(users.length / itemsPerPage);
@@ -25,26 +24,25 @@ const Home = () => {
     const currentList = users.slice(startIndex, endIndex);
 
     const getUsers = async () => {
-        setLoading(true);
         const list = await api.randomUser();
         setUsers(list.results);
-        setLoading(false);
     }
 
     const handleFilterName = (e : any) => {
         setFilter(e.target.value);
-        getFromFilterName();
+        getFromFilterName(e.target.value);
     }
 
-    const getFromFilterName = () => {
-        const newList = users.filter(i => 
-            i.name.first.includes(filter) || i.name.last.includes(filter) || i.login.username.includes(filter) || i.email.includes(filter)
-        );
-        if(filter.length > 0) {
+    const getFromFilterName = (word : string) => {
+        const newList = users.filter(i => {
+            const fullName = (i.name.title+i.name.first+i.name.last).toLowerCase();
+            return fullName.includes(word.toLowerCase().replaceAll(" ", ""));
+        });
+        if(word.length > 0) {
             setNewListUsers(newList);
-        } else {
-            setNewListUsers([]);
+            return;
         }
+        setNewListUsers([]);
     }
 
     const changePage = (e: any) => {
@@ -74,10 +72,20 @@ const Home = () => {
             <Container>
                 <div className="input-looking">
                     <input 
-                        placeholder="Digite um nome, email ou username"
+                        placeholder="Digite um nome"
                         onChange={handleFilterName}
                         value={filter}
                     />
+                    {/* <input 
+                        placeholder="Digite email"
+                        onChange={handleFilterName}
+                        value={filter}
+                    />
+                    <input 
+                        placeholder="Digite um nome, email ou username"
+                        onChange={handleFilterName}
+                        value={filter}
+                    /> */}
                 </div>
                 <div className='users-area'>
                     <div className='users-area-header'>
