@@ -78,4 +78,8 @@
     .input-looking input::placeholder {
         font-size: 1.6rem;
     }
+
+    .button-pagination {
+        font-size: 1rem;
+    }
 }

@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.clientes-cadastro-area .nome, .endereco {
+.clientes-cadastro-area .nome, .endereco, .estado {
     width: 100%;
     display: grid;
     border: 0;
@@ -27,6 +27,20 @@
 
 .clientes-cadastro-area .endereco {
     grid-template-columns: 70% calc(30% - 1rem);
+}
+
+.clientes-cadastro-area .estado {
+    grid-template-columns: 30% auto;
+    margin-bottom: 1rem;
+}
+
+.clientes-cadastro-area .estado label {
+    font-size: 1.4rem;
+}
+
+.clientes-cadastro-area .estado select {
+    width: 100%;
+    padding: 1rem;
 }
 
 .clientes-cadastro-area input {

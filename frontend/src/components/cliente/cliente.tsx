@@ -1,5 +1,5 @@
 import './cliente.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,9 +14,15 @@ type Props = {
 }
 
 const delCliente = async (id : string) => {
-    const result = await api.deleteClient(id);
-    if (result) {
-        alert('Usuário deletado');
+    let response = window.confirm('Tem certeza que deseja deletar este usuário?');
+    if (response) {
+        const result = await api.deleteClient(id);
+        if (result) {
+            alert('Usuário deletado');
+            window.location.reload();
+        } else {
+            alert('Não foi possível deletar o usuário');
+        }
     }
 }
 

@@ -1,8 +1,8 @@
 import { MainRoutes } from "./routes";
-import { api } from "../utils/useApi";
+import { autenticacao } from '../utils/usuarioAutenticado';
 
 const ProtectedRoutes = ({children} : any) => {
-    const usuarioAutenticado = api.usuarioAutenticado();
+    const usuarioAutenticado = autenticacao.usuarioAutenticado();
     return usuarioAutenticado ? children : <MainRoutes />
 }
 

@@ -11,6 +11,7 @@ import User from '../../components/users/user';
 
 const Home = () => {
     const [users, setUsers] = useState<user[]>([]);
+    const [newListUsers, setNewListUsers] = useState<user[]>([]);
     const [filter, setFilter] = useState<string>('');
     const [loading, setLoading] = useState(false);
 
@@ -30,20 +31,19 @@ const Home = () => {
         setLoading(false);
     }
 
-    const handleFilter = (e : any) => {
+    const handleFilterName = (e : any) => {
         setFilter(e.target.value);
-        getFromFilter();
+        getFromFilterName();
     }
 
-    const getFromFilter = () => {
-        const oldList = [...users];
+    const getFromFilterName = () => {
         const newList = users.filter(i => 
-            i.name.first.includes(filter) || i.name.last.includes(filter)
+            i.name.first.includes(filter) || i.name.last.includes(filter) || i.login.username.includes(filter) || i.email.includes(filter)
         );
         if(filter.length > 0) {
-            setUsers(newList);
+            setNewListUsers(newList);
         } else {
-            setUsers(oldList);
+            setNewListUsers([]);
         }
     }
 
@@ -64,18 +64,18 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if(!users || users?.length === 0) {
+        if(users.length === 0) {
             getUsers();
         }  
-    }, [users]);
+    }, []);
     
     return (
         <div className='home-area'>
             <Container>
                 <div className="input-looking">
                     <input 
-                        placeholder="I´m looking for..."
-                        onChange={handleFilter}
+                        placeholder="Digite um nome, email ou username"
+                        onChange={handleFilterName}
                         value={filter}
                     />
                 </div>
@@ -87,8 +87,13 @@ const Home = () => {
                         <div>Username</div>
                         <div>Idade</div>
                     </div>
-                    {users &&
+                    {users && newListUsers.length === 0 &&
                         currentList.map((i, k) => (
+                            <User data={i} key={k}/>
+                        ))
+                    }
+                    {newListUsers.length > 0 &&
+                        newListUsers.map((i, k) => (
                             <User data={i} key={k}/>
                         ))
                     }

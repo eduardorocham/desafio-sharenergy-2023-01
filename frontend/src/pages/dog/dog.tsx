@@ -15,6 +15,8 @@ const RandomDog = () => {
         const result = await api.randomDog();
         setUrlImage(result.url);
         setLoading(false);
+        let token = localStorage.getItem("token");
+        console.log(token);
     }
 
     return (

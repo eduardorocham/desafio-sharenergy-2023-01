@@ -1,4 +1,5 @@
 const BASE = 'http://localhost:4000';
+let token = localStorage.getItem("token");
 
 export const api = {
     login: async (username: string, password: string) => {
@@ -22,9 +23,6 @@ export const api = {
             return json;
         }
     },
-    usuarioAutenticado: () => {
-        return localStorage.getItem("token") != undefined ? true : false
-    },
     randomUser: async () => {
         const result = await fetch('https://randomuser.me/api/?results=100&inc=picture,name,email,login,dob');
         const json = await result.json();
@@ -46,12 +44,20 @@ export const api = {
         return json;
     },
     getClients: async () => {
-        const result = await fetch('http://localhost:4000/list');
+        const result = await fetch('http://localhost:4000/list', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const json = await result.json();
         return json;
     },
     getClient: async (id: string) => {
-        const result = await fetch(`http://localhost:4000/list/${id}`);
+        const result = await fetch(`http://localhost:4000/list/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const json = await result.json();
         return json;
     },
@@ -68,7 +74,8 @@ export const api = {
                     cpf
                 }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             });
             const json = await response.json();
@@ -88,7 +95,8 @@ export const api = {
                     cpf
                 }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
         });
         const json = await result.json();
@@ -101,7 +109,8 @@ export const api = {
                     id
                 }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
         });
         const json = await result.json();
