@@ -73,7 +73,7 @@ export const updateClient = async (req: Request, res: Response) => {
 
     if (id) {
         await Client.updateOne(
-            { id },
+            { _id : id },
             {
                 nomeCompleto: {
                     nome,
