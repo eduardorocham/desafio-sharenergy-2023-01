@@ -1,7 +1,11 @@
 import { MainRoutes } from "./routes";
 import { autenticacao } from '../utils/usuarioAutenticado';
 
-const ProtectedRoutes = ({children} : any) => {
+type Props = {
+    children: JSX.Element
+}
+
+const ProtectedRoutes = ({children} : Props) => {
     const usuarioAutenticado = autenticacao.usuarioAutenticado();
     return usuarioAutenticado ? children : <MainRoutes />
 }

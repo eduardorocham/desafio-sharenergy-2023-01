@@ -1,3 +1,7 @@
+.clientes-page {
+    padding-bottom: 2rem;
+}
+
 .clientes-area {
     display: flex;
     justify-content: space-between;

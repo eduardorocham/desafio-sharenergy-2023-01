@@ -1,6 +1,10 @@
 import './container.css';
 
-const Container = ({children} : any) => {
+type Props = {
+    children: JSX.Element
+}
+
+const Container = ({children} : Props) => {
     return (
         <div className="container">
             {children}

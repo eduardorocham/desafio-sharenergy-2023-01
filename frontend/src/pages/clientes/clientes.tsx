@@ -28,6 +28,7 @@ const Clientes = () => {
     return (
         <div className="clientes-page">
             <Container>
+                <>
                 <div className='clientes-area'>
                     <h1>Clientes cadastrados:</h1>
                     <Link to='/clientes/cadastro'>
@@ -39,6 +40,7 @@ const Clientes = () => {
                         <Cliente data={i} key={k}/>
                     ))
                 }
+                </>
             </Container>
         </div>
     )

@@ -1,6 +1,6 @@
 import './home.css';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { api } from "../../utils/useApi";
 
@@ -12,7 +12,9 @@ import User from '../../components/users/user';
 const Home = () => {
     const [users, setUsers] = useState<user[]>([]);
     const [newListUsers, setNewListUsers] = useState<user[]>([]);
-    const [filter, setFilter] = useState<string>('');
+    const [filterName, setFilterName] = useState<string>('');
+    const [filterEmail, setFilterEmail] = useState<string>('');
+    const [filterUsername, setFilterUsername] = useState<string>('');
 
     //Paginação:
     const [itemsPerPage] = useState(10);
@@ -29,8 +31,18 @@ const Home = () => {
     }
 
     const handleFilterName = (e : any) => {
-        setFilter(e.target.value);
+        setFilterName(e.target.value);
         getFromFilterName(e.target.value);
+    }
+
+    const handleFilterEmail = (e : any) => {
+        setFilterEmail(e.target.value);
+        getFromFilterEmail(e.target.value);
+    }
+
+    const handleFilterUsername = (e : any) => {
+        setFilterUsername(e.target.value);
+        getFromFilterUsername(e.target.value);
     }
 
     const getFromFilterName = (word : string) => {
@@ -39,6 +51,44 @@ const Home = () => {
             return fullName.includes(word.toLowerCase().replaceAll(" ", ""));
         });
         if(word.length > 0) {
+            if (newListUsers.length > 0) {
+                setNewListUsers(newListUsers.filter(i => {
+                    const fullName = (i.name.title+i.name.first+i.name.last).toLowerCase();
+                    return fullName.includes(word.replaceAll(" ", ""))
+                }));
+            }
+            setNewListUsers(newList);
+            return;
+        }
+        setNewListUsers([]);
+    }
+
+    const getFromFilterEmail = (word : string) => {
+        const newList = users.filter(i => {
+            const email = i.email.toLowerCase();
+            return email.includes(word.toLowerCase().replaceAll(" ", ""));
+        });
+        if(word.length > 0) {
+            if (newListUsers.length > 0) {
+                setNewListUsers(newListUsers.filter((i) => i.email.includes(word.replaceAll(" ", ""))));
+                return;
+            }
+            setNewListUsers(newList);
+            return;
+        }
+        setNewListUsers([]);
+    }
+
+    const getFromFilterUsername = (word : string) => {
+        const newList = users.filter(i => {
+            const username = i.login.username.toLowerCase();
+            return username.includes(word.toLowerCase().replaceAll(" ", ""));
+        });
+        if(word.length > 0) {
+            if (newListUsers.length > 0) {
+                setNewListUsers(newListUsers.filter((i) => i.login.username.includes(word.replaceAll(" ", ""))));
+                return;
+            }
             setNewListUsers(newList);
             return;
         }
@@ -70,22 +120,23 @@ const Home = () => {
     return (
         <div className='home-area'>
             <Container>
+                <>
                 <div className="input-looking">
                     <input 
                         placeholder="Digite um nome"
                         onChange={handleFilterName}
-                        value={filter}
-                    />
-                    {/* <input 
-                        placeholder="Digite email"
-                        onChange={handleFilterName}
-                        value={filter}
+                        value={filterName}
                     />
                     <input 
-                        placeholder="Digite um nome, email ou username"
-                        onChange={handleFilterName}
-                        value={filter}
-                    /> */}
+                        placeholder="Digite email"
+                        onChange={handleFilterEmail}
+                        value={filterEmail}
+                    />
+                    <input 
+                        placeholder="Digite um username"
+                        onChange={handleFilterUsername}
+                        value={filterUsername}
+                    />
                 </div>
                 <div className='users-area'>
                     <div className='users-area-header'>
@@ -119,6 +170,7 @@ const Home = () => {
                     })}
                     <button className='button-pagination' onClick={nextPage}>Next</button>
                 </div>
+                </>
             </Container>
         </div>
     )

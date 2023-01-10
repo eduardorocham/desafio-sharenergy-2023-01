@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './clientes-cadastro.css';
@@ -23,8 +23,8 @@ const ClientesCadastro = () => {
 
    const [estados, setEstados] = useState<EstadoType[]>([]);
    const [cidades, setCidades] = useState<CidadeType[]>([]);
-   const [estado, setEstado] = useState('');
-   const [cidade, setCidade] = useState('');
+   const [estado, setEstado] = useState("RO");
+   const [cidade, setCidade] = useState("Alta Floresta D'Oeste");
 
    const navigate = useNavigate();
 
@@ -34,19 +34,52 @@ const ClientesCadastro = () => {
    }
 
    const getCidades = async (uf : string) => {
-    const list = await apiIBGE.getCidades(uf);
-    setCidades(list);
-}
+        const list = await apiIBGE.getCidades(uf);
+        setCidades(list);
+   }
 
    const sendCliente = async (event: any) => {
         event.preventDefault();
 
+        if (nome.length === 0 || sobrenome.length === 0 || email.length === 0 || telefone.length === 0 || endereco.length === 0 || numero.length === 0 || cpf.length === 0) {
+            window.alert("Preencha todos os campos!");
+            return
+        }
+
         //Deixar primeira letra do nome e sobrenome maiúscula
         let nomeValid = nome[0].toUpperCase() + nome.substring(1);
         let sobrenomeValid = sobrenome[0].toUpperCase() + sobrenome.substring(1);
-    
+
+        if (telefone.length === 11) {
+            let telefoneNumber = parseInt(telefone);
+            if (Number.isNaN(telefoneNumber)) {
+                window.alert("Número de telefone inválido");
+                return
+            }
+        } else {
+            window.alert("Número de telefone inválido");
+            return
+        }
+
+        let numeroNumber = parseInt(numero);
+        if (Number.isNaN(numeroNumber)) {
+            window.alert("Número no endereço inválido");
+            return
+        }
+
         let fullEndereco = `${endereco}, ${numero}, ${cidade}, ${estado}`;
-        // let CPF = `${cpf.slice(0, 3)}.${cpf.slice(4, 7)}`;
+        
+        if (cpf.length === 11) {
+            let cpfNumber = parseInt(cpf);
+            if (Number.isNaN(cpfNumber)) {
+                window.alert("CPF Inválido");
+                return
+            }
+        } else {
+            window.alert("Digite apenas números no CPF");
+            return
+        }
+
         const result = await api.createClient(nomeValid, sobrenomeValid, email, telefone, fullEndereco, cpf);
         if(result.id) {
             navigate('/clientes');
@@ -58,7 +91,7 @@ const ClientesCadastro = () => {
    }, []);
 
    useEffect(() => {
-        if (estado.length > 0 && estado.length > 0) {
+        if (estado.length > 0) {
             getCidades(estado);
         }
     }, [estado]);
@@ -91,6 +124,7 @@ const ClientesCadastro = () => {
                             placeholder='E-mail:'
                             onChange={(e) => setEmail(e.target.value)} 
                             value={email}
+                            required
                         />
                         <input 
                             type='text' 
@@ -98,6 +132,7 @@ const ClientesCadastro = () => {
                             placeholder='Telefone:' 
                             onChange={(e) => setTelefone(e.target.value)}
                             value={telefone}
+                            required
                         />
                         <fieldset className='endereco'>
                             <input 
@@ -106,12 +141,14 @@ const ClientesCadastro = () => {
                                 placeholder='Endereço:'
                                 onChange={(e) => setEndereco(e.target.value)} 
                                 value={endereco}
+                                required
                             />
                             <input 
                                 type='text' 
                                 id='numero' 
                                 placeholder='Número:' 
                                 onChange={(e) => setNumero(e.target.value)}
+                                required
                             />
                         </fieldset>
                         <fieldset className='estado'>
@@ -138,6 +175,7 @@ const ClientesCadastro = () => {
                             placeholder='CPF:' 
                             onChange={(e) => setCpf(e.target.value)}
                             value={cpf}
+                            required
                         />
                         <input 
                             type='submit'

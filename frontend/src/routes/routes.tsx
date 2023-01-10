@@ -17,38 +17,50 @@ export const MainRoutes = () => {
                 <Route path="/" element={<Login />} />
                 <Route path="/home" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <Home />
+                        </>
                     </ProtectedRoutes>
                 } />
                 <Route path="/status-code" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <Status />
+                        </>
                     </ProtectedRoutes>
                 } />
                 <Route path="/random-dog" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <RandomDog />
+                        </>
                     </ProtectedRoutes>
                 } />
                 <Route path="/clientes" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <Clientes />
+                        </>
                     </ProtectedRoutes>
                 } />
                 <Route path="/clientes/cadastro" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <ClientesCadastro />
+                        </>
                     </ProtectedRoutes>
                 } />
                 <Route path="/cliente/:id" element={
                     <ProtectedRoutes>
+                        <>
                         <Header />
                         <ClientesUpdate />
+                        </>
                     </ProtectedRoutes>
                 } />
             </Routes>
